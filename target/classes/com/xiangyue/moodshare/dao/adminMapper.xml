@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiangyue.moodshare.dao.AdminDao">
+
+	<sql id="Base_Column">
+		id,
+		adminName,
+		adminPassword
+	</sql>
+
+	<resultMap type="com.xiangyue.moodshare.entity.Admin" id="Base_Map">
+		<id property="id" column="id" />
+		<result property="adminName" column="adminName" />
+		<result property="adminPassword" column="adminPassword" />
+	</resultMap>
+
+	<insert id="insert" parameterType="com.xiangyue.moodshare.entity.Admin">
+		insert into answer(
+		<include refid="Base_Column" />
+		)
+		values(
+		null,
+		#{adminName},
+		#{adminPassword},
+		)
+	</insert>
+
+	<select id="getAdminList" resultMap="Base_Map">
+		select
+		<include refid="Base_Column" />
+		from admin
+		where adminName=#{adminName}
+	</select>
+
+	<delete id="delete">
+		delete from admin
+		where
+		adminName = #{adminName}
+	</delete>
+
+</mapper>

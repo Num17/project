@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiangyue.moodshare.dao.UserDao">
+
+	<sql id="Base_Column">
+		userId,
+		userName,
+		userImg,
+		state,
+		userPassword,
+		userGender,
+		userPhone,
+		userAddress,
+		userScore
+	</sql>
+	<resultMap type="com.xiangyue.moodshare.entity.User" id="Base_Map">
+		<id property="userId" column="userId" />
+		<result property="userName" column="userName" />
+		<result property="userImg" column="userImg" />
+		<result property="state" column="state" />
+		<result property="userPassword" column="userPassword" />
+		<result property="gender" column="userGender" />
+		<result property="userPhone" column="userPhone" />
+		<result property="userAddress" column="userAddress" />
+		<result property="userScore" column="userScore" />
+	</resultMap>
+
+	<select id="getUserByUserName" resultMap="Base_Map">
+		select
+		<include refid="Base_Column"></include>
+		from user
+		where userName = #{userName}
+	</select>
+
+	<select id="getById" resultMap="Base_Map">
+		select
+		<include refid="Base_Column"></include>
+		from user where
+		userId=#{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="getUserByNameAndPwd" resultMap="Base_Map">
+		select
+		<include refid="Base_Column" />
+		from user where
+		userName=#{user} and userPassword = #{pwd}
+	</select>
+
+	<update id="update" parameterType="com.xiangyue.moodshare.entity.User">
+		update user
+		set
+		userImg=#{userImg},
+		userGender=#{gender},
+		userPhone=#{userPhone},
+		userAddress=#{userAddress}
+		where
+		userId=#{userId,jdbcType=BIGINT}
+	</update>
+
+	<insert id="insert" parameterType="com.xiangyue.moodshare.entity.User">
+		insert into user(
+		<include refid="Base_Column" />
+		)
+		values(
+		null,
+		#{userName},
+		#{userImg},
+		#{state},
+		#{userPassword},
+		#{gender},
+		#{userPhone},
+		#{userAddress},
+		#{userScore}
+		)
+	</insert>
+
+	<update id="setUserBlack">
+		update user
+		set quanxian = 2
+		where userName=${username}
+	</update>
+
+</mapper>
