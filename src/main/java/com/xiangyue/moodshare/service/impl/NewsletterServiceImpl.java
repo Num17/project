@@ -24,7 +24,7 @@ public class NewsletterServiceImpl implements NewsletterService {
 	@Autowired
 	private NewsletterDao newsletterDao;
 
-	// ·¢±í
+	// ï¿½ï¿½ï¿½ï¿½
 	public void insert(Newsletter newsletter, User user) {
 		newsletter.setNid(null);
 		newsletter.setCreateTime(new SimpleDateFormat("yyyy-MM-dd  HH:mm").format(new Date()));
@@ -38,7 +38,7 @@ public class NewsletterServiceImpl implements NewsletterService {
 		newsletterDao.delete(id);
 	}
 
-	// µãÔÞ
+	// ï¿½ï¿½ï¿½ï¿½
 	@Transactional
 	public void thumbs(String userId, String id) {
 		String thumbs = newsletterDao.getThumbsById(Long.valueOf(id.trim()));
@@ -62,7 +62,7 @@ public class NewsletterServiceImpl implements NewsletterService {
 		newsletterDao.thumbs(thumbs);
 	}
 
-	// ÅÐ¶Ï¸ÃÓÃ»§ÊÇ·ñµãÔÞ
+	// ï¿½Ð¶Ï¸ï¿½ï¿½Ã»ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 	private boolean addUserIdOrRemove(List<String> thumb, String id) {
 		for (String string : thumb) {
 			if (string.equals(id))
@@ -72,12 +72,8 @@ public class NewsletterServiceImpl implements NewsletterService {
 	}
 
 	@Override
-	public PageResult<Newsletter> getNewsletterList(Integer offSet, Integer pageSize, Integer userId) {
-
-		PageResult<Newsletter> pageResult = new PageResult<Newsletter>();
-		pageResult.setRows(newsletterDao.getNewsletterList(offSet - 1, pageSize, userId));
-		pageResult.setPageTotal((getTotal() - 1) / pageSize + 1);
-		return pageResult;
+	public List<Newsletter> getNewsletterList(Integer offSet, Integer pageSize, Integer userId) {
+		return newsletterDao.getNewsletterList(offSet - 1, pageSize, userId);
 	}
 
 	@Override

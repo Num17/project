@@ -39,14 +39,14 @@ public class UserController {
 	}
 
 	@RequestMapping("/user_logout")
-	public String longout(HttpServletRequest request) {
+	public String loginOut(HttpServletRequest request) {
 		request.getSession().invalidate();
 		return "index";
 	}
 
 	@ResponseBody
 	@RequestMapping("/user-res")
-	public BaseResponseMessage res(User user) {
+	public BaseResponseMessage registeredUser(User user) {
 		if (userService.checkUsername(user.getUserName())) {
 			userService.insert(user);
 			return BaseResponseMessage.successMessage;
@@ -56,14 +56,14 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping("/user-checkusername")
-	public BaseResponseMessage checkusername(@RequestParam("userName") String userName) {
+	public BaseResponseMessage checkUsername(@RequestParam("userName") String userName) {
 		if (userService.checkUsername(userName))
 			return BaseResponseMessage.successMessage;
 		return BaseResponseMessage.errorMessage;
 	}
 
 	@RequestMapping("/user_updateheadimage")
-	public String updatehead(HttpServletRequest request, HttpSession session,
+	public String updateHeadImg(HttpServletRequest request, HttpSession session,
 			@RequestParam("file") CommonsMultipartFile file) {
 		String realPath = session.getServletContext().getRealPath("/");
 		User user = (User) session.getAttribute("user");

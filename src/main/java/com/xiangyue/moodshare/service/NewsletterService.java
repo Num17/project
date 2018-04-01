@@ -4,31 +4,33 @@ import com.xiangyue.moodshare.bean.PageResult;
 import com.xiangyue.moodshare.entity.Newsletter;
 import com.xiangyue.moodshare.entity.User;
 
+import java.util.List;
+
 public interface NewsletterService {
 
 	/**
-	 * 说说发表
+	 * 说说锟斤拷锟斤拷
 	 * 
 	 * @param newsletter
 	 */
 	void insert(Newsletter newsletter, User user);
 
 	/**
-	 * 删除说说
+	 * 删锟斤拷说说
 	 * 
 	 * @param 说说id
 	 */
 	void delete(Long id);
 
 	/**
-	 * 更新点赞
+	 * 锟斤拷锟铰碉拷锟斤拷
 	 * 
-	 * @param 点赞的用户id
-	 * @param 被点赞的说说id
+	 * @param 锟斤拷锟睫碉拷锟矫伙拷id
+	 * @param 锟斤拷锟斤拷锟睫碉拷说说id
 	 */
 	void thumbs(String userId, String id);
 
-	PageResult<Newsletter> getNewsletterList(Integer offSet, Integer pageSize, Integer userId);
+	List<Newsletter> getNewsletterList(Integer offSet, Integer pageSize, Integer userId);
 
 	Integer getTotal();
 }
