@@ -1,0 +1,10 @@
+com\project\ProjectApplication.class
+com\project\service\UserService.class
+com\project\config\DataSourceConfig.class
+com\interceptor\LoginInterceptor.class
+com\project\domain\User.class
+com\project\ServletInitializer.class
+com\project\dao\UserMapper.class
+com\project\config\WebMvcConfig.class
+com\project\controller\UserController.class
+com\project\service\impl\UserServiceImpl.class
